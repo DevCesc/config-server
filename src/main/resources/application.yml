@@ -1,0 +1,18 @@
+server:
+  port: 7000
+
+spring:
+  banner:
+    location: classpath:banner/banner.txt
+    image:
+      location: classpath:fotocreador/microservicios.png
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main
+          uri: https://github.com/DevCesc/config-server.git
+
+          search-paths: config-data
