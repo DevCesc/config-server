@@ -1,0 +1,13 @@
+server:
+  port: 7000
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          default-label: master
+          uri: https://github.com/DevCesc/config-server
+          search-paths: config-data
