@@ -1,7 +1,7 @@
 spring:
   cloud:
     gateway:
-      routes[0]:
+      routes:
         id: microservice-product
         uri: lb://microservice-product
         predicates: Path=/api/**
