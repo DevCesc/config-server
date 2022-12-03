@@ -1,4 +1,7 @@
 spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://cescmongo:Cescasdqwe123$.@cluster0.v5hnddb.mongodb.net/banca?retryWrites=true&w=majority
   cloud:
     gateway:
       routes[0]:
