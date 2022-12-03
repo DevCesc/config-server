@@ -1,16 +1,11 @@
 spring:
   cloud:
     gateway:
-      routes:
+      routes[0]:
         id: microservice-product
         uri: lb://microservice-product
         predicates: Path=/api/**
         filters: StripPrefix=1
-#      routes[0]:
-#        id: microservicio-activo-personal
-#        predicates: Path=/api/activo/personal/**
-#        filters: StripPrefix=3
-#        uri: lb://microservicio-activo-personal
       discovery:
         locator:
           enabled: 'true'
