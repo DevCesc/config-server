@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    gateway:
+#      routes[0]:
+#        id: microservicio-activo-personal
+#        predicates: Path=/api/activo/personal/**
+#        filters: StripPrefix=3
+#        uri: lb://microservicio-activo-personal
+      routes[0]:
+        id: microservice-product
+        predicates: Path=/api/**
+        filters: StripPrefix=1
+        uri: lb://microservice-product
+ 
+      discovery:
+        locator:
+          enabled: 'true'
+    loadbalancer:
+      ribbon:
+        enabled: 'false'
+  application:
+    name: microservicio-gateway
+
+server:
+  port: '8090'
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: 'true'
+    register-with-eureka: 'true'
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  
