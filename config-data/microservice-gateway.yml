@@ -32,7 +32,7 @@ spring:
   cloud:
     gateway:
       routes:
-      id: microservice-product
+      id: product
       uri: lb://microservice-product
       predicates: Path=/api/**
       filters: StripPrefix=1
