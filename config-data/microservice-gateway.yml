@@ -21,7 +21,8 @@ spring:
             enabled: true
           routes:
             - id: microservice-product
-              uri: lb://microservice-product
+#              uri: lb://microservice-product
+              uri: http://localhost:49325
               predicates:
                 - Path=/api/**
               filters:
