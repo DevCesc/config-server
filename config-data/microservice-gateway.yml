@@ -24,7 +24,7 @@ spring:
               uri: lb://microservice-product
 #              uri: http://localhost:9090
               predicates:
-                - Path=/api/**
+                - Path=/**
               filters:
                 - RewritePath=/api/(?<x>.*), /$\{x}
 #spring:
