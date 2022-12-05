@@ -1,48 +1,26 @@
-#server:
-#  port: '8090'
-#eureka:
-#  instance:
-#    hostname: localhost
-#  client:
-#    fetch-registry: 'true'
-#    register-with-eureka: 'true'
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka
-#
-#spring:
-#  main:
-#    allow-bean-definition-overriding: true
-#    application:
-#      name: microservice-gateway
-#    cloud:
-#      gateway:
-#        discovery:
-#          locator:
-#            enabled: true
-#            lowerCaseServiceId: true
-#          routes:
-#            - id: microservice-product
-#              uri: lb://MICROSERVICE-PRODUCT/
-#              predicates:
-#                - Path=/api/v1/**
-#              filters:
-#                - RewritePath=/api/v1/(?<x>.*), /$\{x}
-#                - StripPrefix=1
 spring:
   cloud:
     gateway:
       routes[0]:
         id: microservice-product
-#        predicates: Path=/api/activo/personal/**
-        predicates: Path=/api/**
-        filters: StripPrefix=1
+        predicates: Path=/api/v1/**
+        filters: StripPrefix=2
         uri: lb://microservice-product
       routes[1]:
         id: microservice-client
-        predicates: Path=/api/**
-        filters: StripPrefix=1
+        predicates: Path=/api/v1**
+        filters: StripPrefix=2
         uri: lb://microservice-client
-
+      routes[2]:
+        id: microservice-transaction
+        predicates: Path=/api/v1**
+        filters: StripPrefix=2
+        uri: lb://microservice-transaction
+      routes[3]:
+        id: microservice-account
+        predicates: Path=/api/v1**
+        filters: StripPrefix=2
+        uri: lb://microservice-account
       discovery:
         locator:
           enabled: 'true'
@@ -63,5 +41,3 @@ eureka:
     register-with-eureka: 'true'
     service-url:
       defaultZone: http://localhost:8761/eureka
-
-
