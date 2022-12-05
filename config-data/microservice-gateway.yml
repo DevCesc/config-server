@@ -1,54 +1,5 @@
-server:
-  port: 8090
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    fetch-registry: 'true'
-    register-with-eureka: 'true'
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-spring:
-  main:
-    allow-bean-definition-overriding: true
-    application:
-      name: microservice-gateway
-    cloud:
-      gateway:
-        discovery:
-          locator:
-            enabled: true
-            lowerCaseServiceId: true
-          routes:
-            - id: microservice-product
-              uri: lb://MICROSERVICE-PRODUCT/
-#              uri: http://localhost:9090
-              predicates:
-                - Path=/api/v1/**
-              filters:
-                - RewritePath=/api/v1/(?<x>.*), /$\{x}
-                - StripPrefix=1
-#spring:
-#  cloud:
-#    gateway:
-#      routes:
-#      id: microservice-product
-#      uri: lb://microservice-product
-#      predicates: Path=/api/**
-#      filters: StripPrefix=1
-#      discovery:
-#        locator:
-#          enabled: 'true'
-#    loadbalancer:
-#      ribbon:
-#        enabled: 'false'
-#  application:
-#    name: microservice-gateway
-#
 #server:
-#  port: '8090'
-#
+#  port: 8090
 #eureka:
 #  instance:
 #    hostname: localhost
@@ -57,3 +8,51 @@ spring:
 #    register-with-eureka: 'true'
 #    service-url:
 #      defaultZone: http://localhost:8761/eureka
+#
+#spring:
+#  main:
+#    allow-bean-definition-overriding: true
+#    application:
+#      name: microservice-gateway
+#    cloud:
+#      gateway:
+#        discovery:
+#          locator:
+#            enabled: true
+#            lowerCaseServiceId: true
+#          routes:
+#            - id: microservice-product
+#              uri: lb://MICROSERVICE-PRODUCT/
+#              predicates:
+#                - Path=/api/v1/**
+#              filters:
+#                - RewritePath=/api/v1/(?<x>.*), /$\{x}
+#                - StripPrefix=1
+spring:
+  cloud:
+    gateway:
+      routes[0]:
+      id: microservice-product
+      uri: lb://microservice-product
+      predicates: Path=/api/**
+      filters: StripPrefix=1
+      discovery:
+        locator:
+          enabled: 'true'
+    loadbalancer:
+      ribbon:
+        enabled: 'false'
+  application:
+    name: microservice-gateway
+
+server:
+  port: '8090'
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: 'true'
+    register-with-eureka: 'true'
+    service-url:
+      defaultZone: http://localhost:8761/eureka
