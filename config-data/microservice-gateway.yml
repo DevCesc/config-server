@@ -32,8 +32,8 @@ spring:
   cloud:
     gateway:
       routes:
-      id: product
-      uri: lb://microservice-product
+      id: microservice-product
+      uri: lb:// microservice-product
       predicates: Path=/api/**
       filters: StripPrefix=3
       discovery:
