@@ -1,23 +1,5 @@
-spring:
-  cloud:
-    gateway:
-      routes[0]:
-        id: microservice-product
-        uri: lb://microservice-product
-        predicates: Path=/api/**
-        filters: StripPrefix=1
-      discovery:
-        locator:
-          enabled: 'true'
-    loadbalancer:
-      ribbon:
-        enabled: 'false'
-  application:
-    name: microservice-gateway
-
 server:
-  port: '8090'
-
+  port: 8090
 eureka:
   instance:
     hostname: localhost
@@ -26,3 +8,49 @@ eureka:
     register-with-eureka: 'true'
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+    application:
+      name: microservice-gateway
+    cloud:
+      gateway:
+        discovery:
+          locator:
+            enabled: true
+          routes:
+            - id: microservice-product
+              uri: lb://microservice-product
+              predicates:
+                - Path=/api/**
+              filters:
+                - RewritePath=/api/(?<x>.*), /$\{x}
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#      id: microservice-product
+#      uri: lb://microservice-product
+#      predicates: Path=/api/**
+#      filters: StripPrefix=1
+#      discovery:
+#        locator:
+#          enabled: 'true'
+#    loadbalancer:
+#      ribbon:
+#        enabled: 'false'
+#  application:
+#    name: microservice-gateway
+#
+#server:
+#  port: '8090'
+#
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    fetch-registry: 'true'
+#    register-with-eureka: 'true'
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
