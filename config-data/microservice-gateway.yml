@@ -27,7 +27,7 @@ spring:
               predicates:
                 - Path=/api/v1/**
               filters:
-                - RewritePath=/api/(?<x>.*), /$\{x}
+                - RewritePath=/api/v1/(?<x>.*), /$\{x}
                 - StripPrefix=1
 #spring:
 #  cloud:
