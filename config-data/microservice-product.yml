@@ -1,12 +1,12 @@
 server:
-#  port: ${PORT:${SERVER_PORT:0}}
-  port: 9090
+  port: ${PORT:${SERVER_PORT:0}}
 eureka:
   client:
     fetch-registry: 'true'
     register-with-eureka: 'true'
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     service-url:
       defaultZone: http://localhost:8761/eureka
 spring:
