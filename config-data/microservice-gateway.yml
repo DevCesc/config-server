@@ -35,7 +35,7 @@ spring:
         id: microservice-product
 #        predicates: Path=/api/activo/personal/**
         predicates: Path=/api/products/**
-        filters: StripPrefix=1
+        filters: StripPrefix=2
         uri: lb://microservice-product
 
       discovery:
