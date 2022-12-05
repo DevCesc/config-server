@@ -19,6 +19,7 @@ spring:
         discovery:
           locator:
             enabled: true
+            lowerCaseServiceId: true
           routes:
             - id: microservice-product
               uri: lb://MICROSERVICE-PRODUCT/
