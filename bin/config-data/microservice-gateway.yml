@@ -1,0 +1,43 @@
+spring:
+  cloud:
+    gateway:
+      routes[0]:
+        id: microservice-product
+        predicates: Path=/api/v1/products/**
+        filters: StripPrefix=3
+        uri: lb://microservice-product
+      routes[1]:
+        id: microservice-client
+        predicates: Path=/api/v1/clients/**
+        filters: StripPrefix=3
+        uri: lb://microservice-client
+      routes[2]:
+        id: microservice-transaction
+        predicates: Path=/api/v1/transactions/**
+        filters: StripPrefix=3
+        uri: lb://microservice-transaction
+      routes[3]:
+        id: microservice-account
+        predicates: Path=/api/v1/accounts/**
+        filters: StripPrefix=3
+        uri: lb://microservice-account
+      discovery:
+        locator:
+          enabled: 'true'
+    loadbalancer:
+      ribbon:
+        enabled: 'false'
+  application:
+    name: microservice-gateway
+
+server:
+  port: '8090'
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: 'true'
+    register-with-eureka: 'true'
+    service-url:
+      defaultZone: http://localhost:8761/eureka
