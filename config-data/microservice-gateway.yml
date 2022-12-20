@@ -36,6 +36,11 @@ spring:
             predicates: Path=/api/v1/yanki/association/**
             filters: StripPrefix=4
             uri: lb://microservice-yanki-association
+      routes[7]:
+            id: microservice-yanki
+            predicates: Path=/api/v1/yanki/**
+            filters: StripPrefix=3
+            uri: lb://microservice-yanki
       discovery:
         locator:
           enabled: 'true'
