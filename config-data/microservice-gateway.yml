@@ -48,7 +48,7 @@ spring:
             uri: lb://microservice-bootcoin-sales
       routes[9]:
             id: microservice-yanki
-            predicates: Path=/api/v1/yanki/**
+            predicates: Path=/api/v1/yankis/**
             filters: StripPrefix=3
             uri: lb://microservice-yanki
       discovery:
