@@ -12,8 +12,3 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://cescmongo:Cescasdqwe123$.@cluster0.v5hnddb.mongodb.net/banca?retryWrites=true&w=majority
-  cache:
-    type: redis
-  redis:
-    host: localhost
-    port: 6379
